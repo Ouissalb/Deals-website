@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="ma.ac.ensa.model.Utilisateur" table="UTILISATEUR">
+		<id name="id" type="int" column="identifiant">
+			<generator class="increment"/>
+		</id>
+		<property name="username" type="string" column="username"/>
+		<property name="password" type="string" column="password" />
+		<property name="email" type="string" column="email" />
+		<property name="role" type="string" column="role" />
+	</class>
+	
+	<class name="ma.ac.ensa.model.Client" table="CLIENT">
+		<id name="id" type="int" column="identifiant"/>
+		
+		<property name="username" type="string" column="username"/>
+		<property name="password" type="string" column="password" />
+		<property name="email" type="string" column="email" />
+		<property name="role" type="string" column="role" />
+	</class>
+	
+	<!-- <class name="modele.Commande" table="COMMANDE">
+		<id name="identifiant" type="long" column="IDENTIFIANT">
+			<generator class="increment"/>
+		</id>
+		<property name="code" type="string" column="CODE"/>
+		<property name="libelle" type="string" column="LIBELLE" />
+		<property name="montant" type="string" column="MONTANT" />
+	</class> -->
+</hibernate-mapping>
