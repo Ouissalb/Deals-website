@@ -23,4 +23,15 @@
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  
+         <servlet>
+  	<servlet-name>PostDealServlet</servlet-name>
+  	<servlet-class>ma.ac.ensa.presentation.actions.PostDealServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>PostDealServlet</servlet-name>
+  	<url-pattern>/postDeal</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
