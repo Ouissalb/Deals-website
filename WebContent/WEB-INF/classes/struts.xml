@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"=Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+	<struts>
+		<package name="default" namespace="/" extends="struts-default">
+		
+	<action name="index">
+		<result>vues/index-logged-out.jsp</result>
+	</action>
+
+		
+		
+		<action name="login">  
+			<result >index-logged-out.jsp</result>  
+		</action>  
+  
+		<action name="loginproc" class="ma.ac.ensa.presentation.actions.LoginAction" method="loginproc">  
+			<result name="admin-success"  >/index-logged-out.jsp</result>
+			<result name="client-success"  >/vues/index-logged-out.jsp</result>
+			<result name="error" >/loginerror.jsp</result>  
+		</action>  
+  
+		<action name="logout" class="ma.ac.ensa.presentation.actions.LoginAction" method="logout">  
+			<result name="success" >logoutsuccess.jsp</result>  
+		</action>  
+  
+	
+			
+		</package>
+	</struts>

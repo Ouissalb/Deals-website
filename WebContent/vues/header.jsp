@@ -150,7 +150,7 @@
 						<div class="modal-body modal-body-sub_agile">
 						<div class="col-md-8 modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-									<form method="GET" action="<%=request.getContextPath()%>/login">
+									<form method="GET" action="<%=request.getContextPath()%>/loginproc.action">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" name="email" required="">
 								<label>Email</label>
