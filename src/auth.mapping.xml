@@ -38,6 +38,7 @@
 		<property name="prix" type="int" column="prix" />
 		<property name="start_date" type="string" column="start_date" />
 		<property name="visible" type="int" column="visible" />	
+		<property name="title" type="string" column="title" />	
 	</class>
 	
 	<class name="ma.ac.ensa.model.Rubrique" table="RUBRIQUE">

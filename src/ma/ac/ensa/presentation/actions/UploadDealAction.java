@@ -75,8 +75,13 @@ public class UploadDealAction extends ActionSupport implements SessionAware{
 			
             String dateEndMysqlFormat  = year+"-"+month+"-"+day;
 			sujet = new Sujet(description, dateEndMysqlFormat, "open-new", discount,currentUser.getId(),
-					rubrique, myFileFileName, price, start_date, 1);
+					rubrique, myFileFileName, price, start_date, 1, title);
 			SujetMe.createSujet(sujet);
+			sessionMap.put("sujet_title", title);
+			sessionMap.put("sujet_description", description);
+			sessionMap.put("sujet_prix", price);
+			
+			
 
 		} catch(IOException e) {
 			e.printStackTrace();

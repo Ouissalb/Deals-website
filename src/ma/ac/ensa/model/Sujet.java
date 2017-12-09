@@ -14,11 +14,12 @@ public class Sujet {
 	private String start_date;
 	private int visible;
 	private int id_client;
+	private String title;
 	
 	
 	
 	public Sujet(String description, String end_date, String etat, int facteur_dim, int id,
-			int identifiant_rubrique, String image, int prix, String start_date, int visible) {
+			int identifiant_rubrique, String image, int prix, String start_date, int visible, String title) {
 		super();
 		this.description = description;
 		this.end_date = end_date;
@@ -30,6 +31,7 @@ public class Sujet {
 		this.prix = prix;
 		this.start_date = start_date;
 		this.visible = visible;
+		this.title = title;
 	}
 	public int getId() {
 		return id;
@@ -108,6 +110,15 @@ public class Sujet {
 	}
 	public void setId_client(int id_client) {
 		this.id_client = id_client;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getVisible() {
+		return visible;
 	}
 
 }
