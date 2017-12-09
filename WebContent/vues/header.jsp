@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="/struts-tags" prefix="s" %>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -126,7 +127,7 @@
 					</li>-->
 					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
 					<c:if test="${not empty currentSessionUser }" var="maVariable">
-					<li class=" menu__item"><a class="menu__link" href="<%=request.getContextPath()%>/postDeal">Post a deal</a></li>
+					<li class=" menu__item"><a class="menu__link" href="<%=request.getContextPath()%>/postDeal.action">Post a deal</a></li>
 					<li class=" menu__item"><a class="menu__link" href="contact.htm">View your deals</a></li>
 				 	</c:if>
 				  </ul>
@@ -150,19 +151,19 @@
 						<div class="modal-body modal-body-sub_agile">
 						<div class="col-md-8 modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-									<form method="GET" action="<%=request.getContextPath()%>/loginproc.action">
+									<s:form method="GET" action="/loginproc.action" validate="true" >
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" name="email" required="">
+								<input type="text" name="email">
 								<label>Email</label>
 								<span></span>
 							</div>
 							<div class="styled-input">
-								<input type="password" name="password" required=""> 
+								<input type="password" name="password" > 
 								<label>Password</label>
 								<span></span>
 							</div> 
 							<input type="submit" value="Sign In">
-						</form>
+						</s:form>
 						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
 															<li><a href="#" class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -202,7 +203,7 @@
 						<div class="modal-body modal-body-sub_agile">
 						<div class="col-md-8 modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-						 <form method="GET" action="<%=request.getContextPath()%>/signUp">
+						 <s:form method="GET"  action="/signupproc.action">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" name="username" required="">
 								<label>Username</label>
@@ -219,12 +220,12 @@
 								<span></span>
 							</div> 
 							<div class="styled-input">
-								<input type="password" name="passwordC" required=""> 
+								<input type="password" name="passwordConf" required=""> 
 								<label>Confirm Password</label>
 								<span></span>
 							</div> 
 							<input type="submit" value="Sign Up">
-						</form>
+						</s:form>
 						  
 														<div class="clearfix"></div>
 														<p><a href="#">By clicking register, I agree to your terms</a></p>

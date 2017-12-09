@@ -23,6 +23,33 @@
 		<property name="role" type="string" column="role" />
 	</class>
 	
+		<class name="ma.ac.ensa.model.Sujet" table="SUJET">
+		<id name="id" type="int" column="identifiant">
+			<generator class="increment"/>
+		</id>
+		<property name="description" type="string" column="description" />
+		<property name="end_date" type="string" column="end_date" />
+		<property name="etat" type="string" column="etat" />
+		<property name="facteur_dim" type="int" column="facteur_dim" />
+		<property name="identifiant_rubrique" type="int" column="identifiant_RUBRIQUE" />
+		<property name="id" type="int" column="id_client" />
+		<property name="image" type="string" column="image" />
+		<property name="nbr_adherents" type="int" column="nbr_adherents" />
+		<property name="prix" type="int" column="prix" />
+		<property name="start_date" type="string" column="start_date" />
+		<property name="visible" type="int" column="visible" />	
+	</class>
+	
+	<class name="ma.ac.ensa.model.Rubrique" table="RUBRIQUE">
+		<id name="identifiant" type="int" column="identifiant">
+			<generator class="increment"/>
+		</id>
+		
+		<property name="libelle" type="string" column="libelle"/>
+		<property name="identifiant_utilisateur" type="int" column="identifiant_UTILISATEUR" />
+
+	</class>
+	
 	<!-- <class name="modele.Commande" table="COMMANDE">
 		<id name="identifiant" type="long" column="IDENTIFIANT">
 			<generator class="increment"/>

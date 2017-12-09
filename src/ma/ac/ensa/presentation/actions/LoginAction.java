@@ -16,12 +16,16 @@ import ma.ac.ensa.model.Utilisateur;
 public class LoginAction extends ActionSupport  implements SessionAware
 {
 	
-	private SessionMap sessionMap;
+	private static SessionMap sessionMap;
 	
 	@Override
 	public void setSession(Map map) {
 		sessionMap = (SessionMap) map;
 		
+	}
+	public static SessionMap getSession()
+	{
+		return sessionMap;
 	}
 	
 	private String email;
@@ -64,26 +68,17 @@ public class LoginAction extends ActionSupport  implements SessionAware
 			}
 			if (user.getRole().equals("admin"))
 			{
-				//HttpSession session = request.getSession(true);	
-				//session.setAttribute("currentSessionUser",user);
 				sessionMap.put("currentSessionUser", user);
 				return "admin-success";
-				//response.sendRedirect(request.getContextPath() +"/adminPanel");
-				//successfullyConnected = true;
-				//request.setAttribute("successfullyConnected", successfullyConnected );
 			}
 			else if (user.getRole().equals("client"))
 			{
 				System.out.println("CLIENT IS LOGGED IN");
 				sessionMap.put("currentSessionUser", user);
-				//HttpSession session = request.getSession(true);
-				//session.setAttribute("currentSessionUser",user);
 				successfullyConnected = true;
 				return "client-success";
-				//request.setAttribute("successfullyConnected", successfullyConnected );
-				//request.getRequestDispatcher("/vues/index-logged-out.jsp").forward(request, response);
 			}
-				
+			return ERROR;
 			
 			
 		} 
