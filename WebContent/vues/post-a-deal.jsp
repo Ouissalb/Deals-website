@@ -47,7 +47,7 @@
                             
                             &nbsp &nbsp &nbsp
                             <label for="range">Discount :</label>
-                   			<select name="discount" form="carform">
+                   			<select name="discount" >
 							  <option value="5">5%</option>
 							  <option value="10">10%</option>
 							  <option value="15">20%</option>

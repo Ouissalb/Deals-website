@@ -80,6 +80,7 @@ public class UploadDealAction extends ActionSupport implements SessionAware{
 			sessionMap.put("sujet_title", title);
 			sessionMap.put("sujet_description", description);
 			sessionMap.put("sujet_prix", price);
+			sessionMap.put("sujet_img", myFileFileName);
 			
 			
 

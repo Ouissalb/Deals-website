@@ -1527,6 +1527,22 @@ button.w3view-cart {
     top: 0;
     z-index:99;
 }
+
+.product-new-top-left {
+    background:#fc636b none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px 1px;
+    position: absolute;
+    top: -100;
+    left: 10px;
+    z-index:99;
+}
+
+.move-bottom
+{position :relative;
+top : 10px;}
+
 .inner-men-cart-pro {
     height: 100%;
     position: relative;

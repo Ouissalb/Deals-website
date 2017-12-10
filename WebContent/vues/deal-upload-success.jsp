@@ -22,6 +22,7 @@
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp" />	
@@ -46,16 +47,20 @@
 							
 							
 							<div class="col-md-3 product-men">
+							
 								<div class="men-pro-item simpleCart_shelfItem">
+								
 									<div class="men-thumb-item">
-										<img src="images/w3.jpg" alt="" class="pro-image-front">
-										<img src="images/w3.jpg" alt="" class="pro-image-back">
+										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet_img}" alt="" class="pro-image-front">
+										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet_img}" alt="" class="pro-image-back">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Quick View</a>
+													<a href="single.html" class="link-product-add-cart">Voir plus</a>
 												</div>
 											</div>
 											<span class="product-new-top demo">New</span>
+											
+											
 											
 									</div>
 									<div class="item-info-product ">
@@ -65,6 +70,7 @@
 											<del>$189.71</del>
 										</div>											
 									</div>
+									<span class="product-new-top-left"> 12<i class="material-icons move-bottom">person_add</i></span>
 								</div>
 							</div>
 							
