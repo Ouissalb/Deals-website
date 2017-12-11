@@ -19,6 +19,7 @@
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
@@ -84,6 +85,43 @@
 						<div class="tab1">
 							
 							
+							
+							<c:forEach var="sujet" items="${sujets}">
+							<div class="col-md-3 product-men">
+							
+								<div class="men-pro-item simpleCart_shelfItem">
+								
+									<div class="men-thumb-item">
+										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet[7]}" alt="" class="pro-image-front">
+										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet[7]}" alt="" class="pro-image-back">
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="single.html" class="link-product-add-cart">Voir plus</a>
+												</div>
+											</div>
+											<span class="product-new-top demo" id="${sujet[2]}"> </span>																								
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="single.html">${sujet[12]}</a></h4>
+										<div class="info-product-price">
+											<span class="item_price">${sujet[9]}</span>
+											<del>${sujet[8]}</del>
+										</div>											
+									</div>
+									<span class="product-new-top-left">&nbsp &nbsp ${sujet[10]}<i class="material-icons move-bottom">person_add</i></span>
+								</div>
+							</div>
+						</c:forEach>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- 
 							<div class="col-md-3 product-men">
 								<div class="men-pro-item simpleCart_shelfItem">
 									<div class="men-thumb-item">
@@ -164,45 +202,16 @@
 								</div>
 							</div>
 							
-							<div class="col-md-3 product-men">
-								<div class="men-pro-item simpleCart_shelfItem">
-									<div class="men-thumb-item">
-										<img src="images/w3.jpg" alt="" class="pro-image-front">
-										<img src="images/w3.jpg" alt="" class="pro-image-back">
-											<div class="men-cart-pro">
-												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Quick View</a>
-												</div>
-											</div>
-											<span class="product-new-top demo">New</span>
-											
-									</div>
-									<div class="item-info-product ">
-										<h4><a href="single.html">Skinny Jeans</a></h4>
-										<div class="info-product-price">
-											<span class="item_price">$150.99</span>
-											<del>$189.71</del>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Skinny Jeans " />
-																	<input type="hidden" name="amount" value="30.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-																			
-									</div>
-								</div>
-							</div>
+							
+							
+							
+						
+							
+							
+							
+							
+							
+							
 							
 							<div class="col-md-3 product-men">
 								<div class="men-pro-item simpleCart_shelfItem">
@@ -283,7 +292,7 @@
 																			
 									</div>
 								</div>
-							</div>
+							</div>-->
 							
 						<!--<div class="tab3">
 								
@@ -347,6 +356,41 @@
 	
 	<jsp:include page="footer.jsp" />	
 	
+<script type="text/javascript">
+//console.log("DateA " + "${sujets[0][2]}");
+
+
+var x = setInterval(function() {
+	
+
+ var elementsToAdd = document.getElementsByClassName("demo");
+ for (i = 0; i < elementsToAdd.length; i++) {
+	 var getDate = elementsToAdd[i].id;
+	 if (! getDate){
+		 continue;
+	 }
+	 //console.log("Debugging only: " + getDate);
+	 var countdownDate = new Date(getDate).getTime();
+	 var now = new Date().getTime();
+	 var distance = countdownDate - now;
+	 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	 elementsToAdd[i].innerHTML = days + "d " + hours + "h "  + minutes + "m " + seconds + "s ";
+ }
+
+ if (distance < 0) {
+   clearInterval(x);
+ var elementsToUpdate = document.getElementsByClassName("demo");
+ for (i = 0; i < elementsToUpdate.length; i++) {
+   elementsToUpdate[i].innerHTML = "EXPIRED";
+ }    
+
+ }
+}, 1000);
+</script>
 
 </body>
 </html>

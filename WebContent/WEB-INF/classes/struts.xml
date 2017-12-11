@@ -6,7 +6,7 @@
 	<struts>
 		<package name="default" namespace="/" extends="struts-default">
 		
-		<action name="index">
+		<action name="index" class="ma.ac.ensa.presentation.actions.IndexAction" method="showIndexPage">
 			<result>vues/index-logged-out.jsp</result>
 		</action>
 		
@@ -14,8 +14,8 @@
 			<result >index-logged-out.jsp</result>  
 		</action>  
 		
-		<action name="postDeal" class="ma.ac.ensa.presentation.actions.UploadDealAction" method="populateRubriques">  
-			<result name="success">/vues/post-a-deal.jsp</result>  
+		<action name="postDeal" class="ma.ac.ensa.presentation.actions.PostDealAction" method="populateRubriques">  
+			<result>/vues/post-a-deal.jsp</result>
 		</action> 
   
 		<action name="loginproc" class="ma.ac.ensa.presentation.actions.LoginAction" method="loginproc">  
@@ -32,11 +32,9 @@
 		</action>  
 		
 		<action name="uploaddeal" class="ma.ac.ensa.presentation.actions.UploadDealAction" method="uploaddeal">  
-			<result name="admin-success"  >/index-logged-out.jsp</result>
-			<result name="client-success"  >/vues/index-logged-out.jsp</result>
 			<result name="ERROR" >/vues/index-logged-out.jsp</result>  
-			<result name="input" >/vues/index-logged-out.jsp</result> 
 			<result name="success" >/vues/deal-upload-success.jsp</result> 
+			<result name="input" >/vues/post-a-deal.jsp</result>
 		</action> 
   
 		<action name="logout" class="ma.ac.ensa.presentation.actions.LoginAction" method="logout">  

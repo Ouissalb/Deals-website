@@ -6,7 +6,6 @@ public class Sujet {
 	private String end_date;
 	private String etat;
 	private int facteur_dim;
-	private String identifiant;
 	private int identifiant_rubrique;
 	private String image;
 	private static int nbr_adherents;
@@ -17,21 +16,22 @@ public class Sujet {
 	private String title;
 	
 	
-	
-	public Sujet(String description, String end_date, String etat, int facteur_dim, int id,
-			int identifiant_rubrique, String image, int prix, String start_date, int visible, String title) {
+	public Sujet() {
+	}
+	public Sujet(String description, String end_date, String etat, int facteur_dim,
+			int identifiant_rubrique, String image, int prix, String start_date, int visible, String title, int id_client) {
 		super();
 		this.description = description;
 		this.end_date = end_date;
 		this.etat = etat;
 		this.facteur_dim = facteur_dim;
-		this.id = id;
 		this.identifiant_rubrique = identifiant_rubrique;
 		this.image = image;
 		this.prix = prix;
 		this.start_date = start_date;
 		this.visible = visible;
 		this.title = title;
+		this.id_client = id_client;
 	}
 	public int getId() {
 		return id;
@@ -62,12 +62,6 @@ public class Sujet {
 	}
 	public void setFacteur_dim(int facteur_dim) {
 		this.facteur_dim = facteur_dim;
-	}
-	public String getIdentifiant() {
-		return identifiant;
-	}
-	public void setIdentifiant(String identifiant) {
-		this.identifiant = identifiant;
 	}
 	public int getIdentifiant_rubrique() {
 		return identifiant_rubrique;

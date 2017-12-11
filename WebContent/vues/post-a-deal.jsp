@@ -34,7 +34,7 @@
 <div class="inner contact">
                 
                 <div>                 
-                    <s:form id="contact-us" method="post" action="uploaddeal.action" enctype = "multipart/form-data">
+                    <s:form id="contact-us" method="post" action="uploaddeal.action" validate="true" enctype = "multipart/form-data">
                         <!-- Left Inputs -->
                         <div class="col-xs-6">
                             
@@ -53,7 +53,8 @@
 							  <option value="15">20%</option>
 							  <option value="20">30%</option>
 							</select>
-							
+							<br/>
+							<label for="rubrique">Rubrique :</label>
 							<select name="rubrique" >
 							    <c:forEach var="item" items="${rubriques}">
 							     <option value="${item[0]}">${item[1]}</option>

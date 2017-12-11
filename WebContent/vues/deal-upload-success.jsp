@@ -58,10 +58,7 @@
 													<a href="single.html" class="link-product-add-cart">Voir plus</a>
 												</div>
 											</div>
-											<span class="product-new-top demo">New</span>
-											
-											
-											
+											<span class="product-new-top demo">New</span>																								
 									</div>
 									<div class="item-info-product ">
 										<h4><a href="single.html">${sujet_title}</a></h4>
