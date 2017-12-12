@@ -4,6 +4,8 @@
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
 	
 	<struts>
+	
+	<constant name="struts.devMode" value="true" />	
 		<package name="default" namespace="/" extends="struts-default">
 		
 		<action name="index" class="ma.ac.ensa.presentation.actions.IndexAction" method="showIndexPage">
@@ -16,6 +18,10 @@
 		
 		<action name="postDeal" class="ma.ac.ensa.presentation.actions.PostDealAction" method="populateRubriques">  
 			<result>/vues/post-a-deal.jsp</result>
+		</action> 
+		
+		<action name="subscribe" class="ma.ac.ensa.presentation.actions.SubscribeAction" method="subscribe">  
+			<result name="error">/vues/show-deal-details.jsp</result>
 		</action> 
 		
 		<action name="showDealDetails" class="ma.ac.ensa.presentation.actions.ShowDealAction" method="showDealDetails">  

@@ -51,12 +51,18 @@
 
 	</class>
 	
-	<!-- <class name="modele.Commande" table="COMMANDE">
-		<id name="identifiant" type="long" column="IDENTIFIANT">
+	<class name="ma.ac.ensa.model.Subscription" table="SUBSCRIPTION">
+		<id name="identifiant" type="int" column="identifiant">
 			<generator class="increment"/>
 		</id>
-		<property name="code" type="string" column="CODE"/>
-		<property name="libelle" type="string" column="LIBELLE" />
-		<property name="montant" type="string" column="MONTANT" />
-	</class> -->
+		<property name="id_client" type="int" column="id_client" />
+		<property name="id_vendeur" type="int" column="id_vendeur" />
+		<property name="id_sujet" type="int" column="id_sujet" />
+		<property name="etat" type="int" column="etat" />
+		<property name="prix_final" type="int" column="prix_final" />
+		<property name="date" type="string" column="date" />
+
+	</class>
+	
+	
 </hibernate-mapping>

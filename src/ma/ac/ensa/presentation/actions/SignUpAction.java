@@ -132,7 +132,7 @@ public class SignUpAction  extends ActionSupport  implements SessionAware{
 					e.printStackTrace();
 					return ERROR;
 				}
-			sessionMap.put("currentSessionUser", user);
+			//sessionMap.put("currentSessionUser", user);
 			return "client-success";
 	    }
 		else 

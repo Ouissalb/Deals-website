@@ -70,9 +70,25 @@
 			</div>
 		</div>
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
-					<h3>${sujetDetails[12]}</h3>
-					<p><span class="item_price">${sujetDetails[9]} DH</span> <del>- ${sujetDetails[8]} DH</del></p>
-					<div class="rating1">
+			<div class="alert alert-danger">
+  				<strong>Error!</strong> ${messageSubs}
+			</div>
+					<h3>${sujetDetails[12]} </h3>
+					
+					<c:choose>
+					  <c:when test="${empty sujetDetails[10] or sujetDetails[10] == '0'}">
+					    <p><span class="item_price">${sujetDetails[9]} DH</span> </p>
+					  </c:when>
+
+					  <c:otherwise>
+					     <p><span class="item_price">${sujetDetails[9]} DH</span> 
+						<del>- ${sujetDetails[8]} DH }</del>
+					    </p>
+					  </c:otherwise>
+					</c:choose>
+
+					
+					<!-- <div class="rating1">
 						<span class="starRating">
 							<input id="rating5" type="radio" name="rating" value="5">
 							<label for="rating5">5</label>
@@ -85,7 +101,7 @@
 							<input id="rating1" type="radio" name="rating" value="1">
 							<label for="rating1">1</label>
 						</span>
-					</div>
+					</div> -->
 					<!--<div class="description">
 						<h5>Check delivery, payment options and charges at your location</h5>
 						 <form action="#" method="post">
@@ -116,28 +132,31 @@
 							<label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
 						</div>
 						<div class="clearfix"> </div>
-					</div>-->
+					</div>-->  
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<form action="#" method="post">
+															<s:form action="/subscribe.action" validate="false" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="business" value=" ">
-																	<input type="hidden" name="item_name" value="Wing Sneakers">
-																	<input type="hidden" name="amount" value="650.00">
-																	<input type="hidden" name="discount_amount" value="1.00">
-																	<input type="hidden" name="currency_code" value="USD">
-																	<input type="hidden" name="return" value=" ">
-																	<input type="hidden" name="cancel_return" value=" ">
+																	<input type="hidden" name="id_sujet" value="${sujetDetails[0]}">
+																	<input type="hidden" name="description" value="${sujetDetails[1]}">
+																	<input type="hidden" name="date_end" value="${sujetDetails[2]}">
+																	<input type="hidden" name="etat" value="${sujetDetails[3]}">
+																	<input type="hidden" name="id_vendeur" value="${sujetDetails[5]}">
+																	<input type="hidden" name="id_rubrique" value="${sujetDetails[6]}">
+																	<input type="hidden" name="image" value="${sujetDetails[7]}">
+																	<input type="hidden" name="prix" value="${sujetDetails[8]}">
+																	<input type="hidden" name="nbr_adherents" value="${sujetDetails[10]}">
+																	<input type="hidden" name="id_user" value="${currentSessionUserId}">
 																	<input type="submit" name="submit" value="Subscribe" class="button">
 																</fieldset>
-															</form>
+															</s:form>
 														</div>
 																			
 					</div>
+					
 					<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
-						                                   <li class="share">Share On : </li>
+						                                   <div class="product-new-top-left">  ${sujetDetails[10]}<i class="material-icons move-bottom">person_add</i></div>
+						                                  <br/> <li class="share">Share On : </li>
 															<li><a href="#" class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
@@ -239,7 +258,9 @@
 										<h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>
 										<div class="info-product-price">
 											<span class="item_price">$140.99</span>
-											<del>$189.71</del>
+											<c:if test="${not empty sujet[10] or sujet[10] ne 0}" var="maVariable">
+												<del>${sujet[8]}</del>
+											</c:if>
 										</div>
 										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 															<form action="#" method="post">

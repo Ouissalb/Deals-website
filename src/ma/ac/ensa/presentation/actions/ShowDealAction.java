@@ -9,9 +9,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import ma.ac.ensa.metier.SujetMe;
+import ma.ac.ensa.model.Utilisateur;
 
 public class ShowDealAction extends ActionSupport implements SessionAware{
-	private SessionMap sessionMap;
+	private static SessionMap sessionMap;
+	private static SessionMap sessionMapUser = null;
+	
+
 	private int id_sujet;
 	
 	public int getId_sujet() {
@@ -27,6 +31,14 @@ public class ShowDealAction extends ActionSupport implements SessionAware{
 	
 	public String showDealDetails()
 	{
+		if(LoginAction.getSession() != null)
+		{
+			sessionMapUser = LoginAction.getSession();
+			Utilisateur user = (Utilisateur) sessionMapUser.get("currentSessionUser");
+			
+			sessionMap.put("currentSessionUserId",  user.getId());
+		}
+		
 		ArrayList<String> sujetDetails = new ArrayList<>();
 		sujetDetails = SujetMe.getSujetById(id_sujet);
 		sessionMap.put("sujetDetails", sujetDetails);
@@ -37,5 +49,10 @@ public class ShowDealAction extends ActionSupport implements SessionAware{
 	public void setSession(Map map) {
 		sessionMap = (SessionMap) map;
 		
+	}
+	
+	public static SessionMap getSession()
+	{
+		return sessionMap;
 	}
 }

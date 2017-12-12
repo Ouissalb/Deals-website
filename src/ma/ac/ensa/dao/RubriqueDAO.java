@@ -21,10 +21,7 @@ public class RubriqueDAO {
 	
 	public static ArrayList<ArrayList<String>> getItems()
 	{
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction tx = null;
 		try {
@@ -59,7 +56,7 @@ public class RubriqueDAO {
 		finally
 		{
 			session.close();
-			sessionFactory.close();
+			HibernateUtil.shutdown();
 		}
 	}
 	

@@ -19,13 +19,15 @@ import ma.ac.ensa.model.Utilisateur;
 public class LoginAction extends ActionSupport  implements SessionAware
 {
 	
-	private static SessionMap sessionMap;
+	private static SessionMap sessionMap = null;
 	
 	@Override
 	public void setSession(Map map) {
 		sessionMap = (SessionMap) map;
 		
 	}
+	
+
 	public static SessionMap getSession()
 	{
 		return sessionMap;
@@ -53,11 +55,9 @@ public class LoginAction extends ActionSupport  implements SessionAware
 	public String loginproc()
 	{
 		ArrayList<ArrayList<String>> sujets = new ArrayList<ArrayList<String>>();
-		sujets = (ArrayList<ArrayList<String>>) IndexAction.getSessionMap().get("sujets");
+		sujets = SujetMe.getAllSujets();
 		sessionMap.put("sujets", sujets);
 		
-		HttpSession session = ServletActionContext.getRequest().getSession(true);
-		boolean successfullyConnected = true;
 		try 
 		{
             Utilisateur user = new Utilisateur();
@@ -66,12 +66,10 @@ public class LoginAction extends ActionSupport  implements SessionAware
 			user.setEmail(email);
 			user.setPassword(password);
 			user = BaseDAO.login(user);
-			sessionMap.put("sujets", sujets);
 			
 			if (user == null) 
 			{
 				errorMsg = "Login et/ou mot de passe incorrectes";
-				successfullyConnected = false;
 				return ERROR;
 			}
 			if (user.getRole().equals("admin"))
@@ -83,7 +81,6 @@ public class LoginAction extends ActionSupport  implements SessionAware
 			{
 				System.out.println("CLIENT IS LOGGED IN");
 				sessionMap.put("currentSessionUser", user);
-				successfullyConnected = true;
 				return "client-success";
 			}
 			return ERROR;

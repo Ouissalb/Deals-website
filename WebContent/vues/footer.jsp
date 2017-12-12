@@ -231,18 +231,7 @@
 <script src="js/modernizr.custom.js"></script>
 	<!-- Custom-JavaScript-File-Links --> 
 	<!-- cart-js -->
-	<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
-
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
-
+	
 	<!-- //cart-js --> 
 <!-- script for responsive tabs -->						
 <script src="js/easy-responsive-tabs.js"></script>

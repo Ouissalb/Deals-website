@@ -21,10 +21,7 @@ public class SujetDAO {
 
 	public static void createSujet(Sujet sujet) {
 
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 				
 		Transaction tx = null;
 		try {
@@ -43,15 +40,12 @@ public class SujetDAO {
 			}
 			throw e;
 		}
-		sessionFactory.close();
+		HibernateUtil.shutdown();
 		
 	}
 
 	public static ArrayList<ArrayList<String>> getAllSujets() {
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction tx = null;
 		try {
@@ -108,17 +102,14 @@ public class SujetDAO {
 		finally
 		{
 			session.close();
-			sessionFactory.close();
+			HibernateUtil.shutdown();
 		}
 	
 	}
 
 	public static ArrayList<String> getSujetById(int id_sujet) {
 		
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction tx = null;
 		try {
@@ -159,7 +150,7 @@ public class SujetDAO {
 						sujetD.add(Integer.toString(sujet.getNbr_adherents())); //10
 						sujetD.add(sujet.getStart_date()); //11
 						sujetD.add(sujet.getTitle()); //12
-
+						System.out.println("SUBSCRIBERS OF DEAL N° "+sujet.getId()+" IS "+Integer.toString(sujet.getNbr_adherents()));
 				}
 				
 				System.out.println(sujetD);
@@ -169,8 +160,14 @@ public class SujetDAO {
 		finally
 		{
 			session.close();
-			sessionFactory.close();
+			HibernateUtil.shutdown();
 		}
+	}
+
+	public static boolean sujetExpired(String id_sujet) 
+	{
+		
+		return false;
 	}
 
 }

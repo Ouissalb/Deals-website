@@ -17,10 +17,7 @@ public class BaseDAO
 {
 	public static void createUser(Utilisateur user)
 	{
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 				
 		Transaction tx = null;
 		try {
@@ -39,15 +36,12 @@ public class BaseDAO
 			}
 			throw e;
 		}
-		sessionFactory.close();
+		HibernateUtil.shutdown();
 	}
 
 	public static boolean usernameTaken(String clientUsername) {
 		
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction tx = null;
 		try {
@@ -70,7 +64,7 @@ public class BaseDAO
 		finally
 		{
 			session.close();
-			sessionFactory.close();
+			HibernateUtil.shutdown();
 		}
 		
 	}
@@ -82,10 +76,7 @@ public class BaseDAO
 
 	public static Utilisateur login(Utilisateur user) throws NoSuchAlgorithmException 
 	{
-		Configuration config = new Configuration();
-		config = config.configure("persistance.cfg.xml");
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction tx = null;
 		try {
@@ -114,7 +105,7 @@ public class BaseDAO
 		finally
 		{
 			session.close();
-			sessionFactory.close();
+			HibernateUtil.shutdown();
 		}
 	}
 }

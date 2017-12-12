@@ -111,8 +111,20 @@
 											</a></h4>
 										</s:form>
 										<div class="info-product-price">
-											<span class="item_price">${sujet[9]} DH</span>
-											<del>${sujet[8]}</del>
+										
+											
+											<c:choose>
+												  <c:when test="${empty sujetDetails[10] or sujetDetails[10] == '0'}">
+												    <span class="item_price">${sujet[9]} DH</span>
+												  </c:when>
+							
+												  <c:otherwise>
+												     <span class="item_price">${sujet[9]} DH</span>
+													<del>${sujet[8]}</del>					    
+												  </c:otherwise>
+												</c:choose>
+												
+											
 										</div>											
 									</div>
 									<div class="product-new-top-left">  ${sujet[10]}<i class="material-icons move-bottom">person_add</i></div>

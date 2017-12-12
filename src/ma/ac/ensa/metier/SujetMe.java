@@ -34,4 +34,9 @@ public class SujetMe {
 		return SujetDAO.getSujetById(id_sujet);
 	}
 
+	public static boolean sujetExpired(String id_sujet) {
+		return SujetDAO.sujetExpired(id_sujet);
+	}
+
+
 }
