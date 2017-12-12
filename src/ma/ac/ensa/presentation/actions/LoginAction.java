@@ -1,5 +1,6 @@
 package ma.ac.ensa.presentation.actions;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import ma.ac.ensa.dao.BaseDAO;
+import ma.ac.ensa.metier.SujetMe;
+import ma.ac.ensa.model.Sujet;
 import ma.ac.ensa.model.Utilisateur;
 
 public class LoginAction extends ActionSupport  implements SessionAware
@@ -49,6 +52,10 @@ public class LoginAction extends ActionSupport  implements SessionAware
 
 	public String loginproc()
 	{
+		ArrayList<ArrayList<String>> sujets = new ArrayList<ArrayList<String>>();
+		sujets = (ArrayList<ArrayList<String>>) IndexAction.getSessionMap().get("sujets");
+		sessionMap.put("sujets", sujets);
+		
 		HttpSession session = ServletActionContext.getRequest().getSession(true);
 		boolean successfullyConnected = true;
 		try 
@@ -59,6 +66,7 @@ public class LoginAction extends ActionSupport  implements SessionAware
 			user.setEmail(email);
 			user.setPassword(password);
 			user = BaseDAO.login(user);
+			sessionMap.put("sujets", sujets);
 			
 			if (user == null) 
 			{

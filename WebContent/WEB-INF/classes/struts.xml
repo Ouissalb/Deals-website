@@ -17,6 +17,10 @@
 		<action name="postDeal" class="ma.ac.ensa.presentation.actions.PostDealAction" method="populateRubriques">  
 			<result>/vues/post-a-deal.jsp</result>
 		</action> 
+		
+		<action name="showDealDetails" class="ma.ac.ensa.presentation.actions.ShowDealAction" method="showDealDetails">  
+			<result>/vues/show-deal-details.jsp</result>
+		</action>
   
 		<action name="loginproc" class="ma.ac.ensa.presentation.actions.LoginAction" method="loginproc">  
 			<result name="admin-success"  >/index-logged-out.jsp</result>

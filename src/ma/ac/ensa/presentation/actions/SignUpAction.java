@@ -1,5 +1,6 @@
 package ma.ac.ensa.presentation.actions;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -80,8 +81,9 @@ public class SignUpAction  extends ActionSupport  implements SessionAware{
 	}
 	public String signupproc()
 	{
-		HttpSession session = ServletActionContext.getRequest().getSession(true);
-		boolean successfullyConnected = true;
+		ArrayList<ArrayList<String>> sujets = new ArrayList<ArrayList<String>>();
+		sujets = (ArrayList<ArrayList<String>>) IndexAction.getSessionMap().get("sujets");
+		sessionMap.put("sujets", sujets);
 		
 		errorMsgEmail = null;
 		errorMsgUsername = null;

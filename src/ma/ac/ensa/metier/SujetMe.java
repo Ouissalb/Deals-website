@@ -30,4 +30,8 @@ public class SujetMe {
 		return newPrice;
 	}
 
+	public static ArrayList<String> getSujetById(int id_sujet) {
+		return SujetDAO.getSujetById(id_sujet);
+	}
+
 }

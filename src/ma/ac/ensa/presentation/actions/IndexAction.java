@@ -14,7 +14,16 @@ import ma.ac.ensa.metier.SujetMe;
 public class IndexAction extends ActionSupport implements SessionAware
 {
 
-	private SessionMap sessionMap;
+	private static SessionMap sessionMap;
+	
+	public static SessionMap getSessionMap() {
+		return sessionMap;
+	}
+
+	public void setSessionMap(SessionMap sessionMap) {
+		IndexAction.sessionMap = sessionMap;
+	}
+
 	public IndexAction() 
 	{	
 	}

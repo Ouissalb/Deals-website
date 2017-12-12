@@ -113,4 +113,64 @@ public class SujetDAO {
 	
 	}
 
+	public static ArrayList<String> getSujetById(int id_sujet) {
+		
+		Configuration config = new Configuration();
+		config = config.configure("persistance.cfg.xml");
+		SessionFactory sessionFactory = config.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		Transaction tx = null;
+		try {
+			
+			tx = session.beginTransaction();
+			Query query = session.createQuery("from Sujet where id ="+id_sujet);
+			List items = query.list();
+			if (items.isEmpty())
+			{
+				return null;
+			}
+			else 
+			{
+				
+				ArrayList<String> sujetD = new ArrayList<String>();
+				for(int i = 0; i<items.size(); i++)
+				{
+						Sujet sujet = (Sujet) items.get(i);
+	
+						//changing date format to match dd/mm/yyyy
+						String[] parts = sujet.getEnd_date().split("-");
+						String year = parts[0];
+						String day = parts[1];
+						String month = parts[2];
+						String newDate = year+"/"+month+"/"+day;			
+						int newPrice = SujetMe.calculatePrice(sujet.getNbr_adherents(), sujet.getPrix(), sujet.getFacteur_dim());
+						
+						sujetD.add(Integer.toString(sujet.getId())); //0
+						sujetD.add(sujet.getDescription()); //1
+						sujetD.add(newDate); //2
+						sujetD.add(sujet.getEtat()); //3
+						sujetD.add(Integer.toString(sujet.getFacteur_dim())); //4
+						sujetD.add(Integer.toString(sujet.getId_client())); //5
+						sujetD.add(Integer.toString(sujet.getIdentifiant_rubrique())); //6
+						sujetD.add(sujet.getImage()); //7
+						sujetD.add(Integer.toString(sujet.getPrix())); //8
+						sujetD.add(Integer.toString(newPrice)); //9
+						sujetD.add(Integer.toString(sujet.getNbr_adherents())); //10
+						sujetD.add(sujet.getStart_date()); //11
+						sujetD.add(sujet.getTitle()); //12
+
+				}
+				
+				System.out.println(sujetD);
+				return sujetD;
+			}
+		}
+		finally
+		{
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
 }

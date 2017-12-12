@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -102,13 +104,18 @@
 											<span class="product-new-top demo" id="${sujet[2]}"> </span>																								
 									</div>
 									<div class="item-info-product ">
-										<h4><a href="single.html">${sujet[12]}</a></h4>
+										<s:form action="/showDealDetails.action">
+										    <input type="hidden" value="${sujet[0]}" name="id_sujet">
+											<h4><a href="#">
+											<input type="submit" value="${sujet[12]}" style="background:none;border:none;">
+											</a></h4>
+										</s:form>
 										<div class="info-product-price">
-											<span class="item_price">${sujet[9]}</span>
+											<span class="item_price">${sujet[9]} DH</span>
 											<del>${sujet[8]}</del>
 										</div>											
 									</div>
-									<span class="product-new-top-left">&nbsp &nbsp ${sujet[10]}<i class="material-icons move-bottom">person_add</i></span>
+									<div class="product-new-top-left">  ${sujet[10]}<i class="material-icons move-bottom">person_add</i></div>
 								</div>
 							</div>
 						</c:forEach>
@@ -252,7 +259,6 @@
 									</div>
 								</div>
 							</div>
-
 							
 							<div class="col-md-3 product-men">
 								<div class="men-pro-item simpleCart_shelfItem">
@@ -357,40 +363,34 @@
 	<jsp:include page="footer.jsp" />	
 	
 <script type="text/javascript">
-//console.log("DateA " + "${sujets[0][2]}");
-
-
 var x = setInterval(function() {
-	
 
- var elementsToAdd = document.getElementsByClassName("demo");
- for (i = 0; i < elementsToAdd.length; i++) {
-	 var getDate = elementsToAdd[i].id;
-	 if (! getDate){
-		 continue;
-	 }
-	 //console.log("Debugging only: " + getDate);
-	 var countdownDate = new Date(getDate).getTime();
-	 var now = new Date().getTime();
-	 var distance = countdownDate - now;
-	 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-	 elementsToAdd[i].innerHTML = days + "d " + hours + "h "  + minutes + "m " + seconds + "s ";
- }
+	var elementsToAdd = document.getElementsByClassName("demo");
+	for (i = 0; i < elementsToAdd.length; i++) {
+	var getDate = elementsToAdd[i].id;
+	if (!getDate) {
+	continue;
+	}
+	//console.log("Debugging only: " + getDate);
+	var countdownDate = new Date(getDate).getTime();
+	var now = new Date().getTime();
+	var distance = countdownDate - now;
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
- if (distance < 0) {
-   clearInterval(x);
- var elementsToUpdate = document.getElementsByClassName("demo");
- for (i = 0; i < elementsToUpdate.length; i++) {
-   elementsToUpdate[i].innerHTML = "EXPIRED";
- }    
 
- }
-}, 1000);
-</script>
+	       if (distance < 0) {
+	elementsToAdd[i].innerHTML = "EXPIRED";
+	}
+	       else{
+	        elementsToAdd[i].innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+	       }
+	}
+	}, 1000);
+	</script>
 
 </body>
 </html>
