@@ -71,8 +71,8 @@
 		</div>
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
 			<c:if test="${not empty messageSubs }" var="maVariable">
-				<div class="alert alert-success">
-			  		<strong>Success!</strong>  ${messageSubs}
+				<div class="alert alert-danger">
+  					<strong>Error!</strong> ${messageSubs}
 				</div>
 			</c:if>
 					<h3>${sujetDetails[12]} </h3>
@@ -84,7 +84,7 @@
 
 					  <c:otherwise>
 					     <p><span class="item_price">${sujetDetails[9]} DH</span> 
-						<del>- ${sujetDetails[8]} DH </del>
+						<del>- ${sujetDetails[8]} DH }</del>
 					    </p>
 					  </c:otherwise>
 					</c:choose>

@@ -69,6 +69,46 @@
 				</div>	
 			</div>
 		</div>
+		
+		<div id="deleteDeal" class="manageD">
+			<s:form action="/deleteDeal.action" validate="false" method="post">
+				<fieldset>
+					<input type="hidden" name="id_sujet" value="${sujetDetails[0]}">
+					<input type="hidden" name="description" value="${sujetDetails[1]}">
+					<input type="hidden" name="date_end" value="${sujetDetails[2]}">
+					<input type="hidden" name="etat" value="${sujetDetails[3]}">
+					<input type="hidden" name="id_vendeur" value="${sujetDetails[5]}">
+					<input type="hidden" name="id_rubrique" value="${sujetDetails[6]}">
+					<input type="hidden" name="image" value="${sujetDetails[7]}">
+					<input type="hidden" name="prix" value="${sujetDetails[8]}">
+					<input type="hidden" name="nbr_adherents" value="${sujetDetails[10]}">
+					<input type="hidden" name="id_user" value="${currentSessionUserId}">
+					<input type="submit" name="submit" value="Delete" class="button">
+				</fieldset>
+			</s:form>	
+		</div>
+		
+		<div id="requestPayment" class="manageD">
+			<s:form action="/requestPayment.action" validate="false" method="post">
+				<fieldset>
+					<input type="hidden" name="id_sujet" value="${sujetDetails[0]}">
+					<input type="hidden" name="description" value="${sujetDetails[1]}">
+					<input type="hidden" name="date_end" value="${sujetDetails[2]}">
+					<input type="hidden" name="etat" value="${sujetDetails[3]}">
+					<input type="hidden" name="id_vendeur" value="${sujetDetails[5]}">
+					<input type="hidden" name="id_rubrique" value="${sujetDetails[6]}">
+					<input type="hidden" name="image" value="${sujetDetails[7]}">
+					<input type="hidden" name="prix" value="${sujetDetails[8]}">
+					<input type="hidden" name="nbr_adherents" value="${sujetDetails[10]}">
+					<input type="hidden" name="id_user" value="${currentSessionUserId}">
+					<input type="submit" name="submit" value="Request payment" class="button">
+				</fieldset>
+			</s:form>	
+		</div>
+		
+		
+		
+		
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
 			<c:if test="${not empty messageSubs }" var="maVariable">
 				<div class="alert alert-success">
@@ -90,54 +130,9 @@
 					</c:choose>
 
 					
-					<!-- <div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div> -->
-					<!--<div class="description">
-						<h5>Check delivery, payment options and charges at your location</h5>
-						 <form action="#" method="post">
-						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
-						<input type="submit" value="Check">
-						</form>
-					</div>-->
-				<!--	<div class="color-quality">
-						<div class="color-quality-right">
-							<h5>Quality :</h5>
-							<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-								<option value="1">1 Qty</option>
-								<option value="2">2 Qty</option> 
-								<option value="3">3 Qty</option>					
-								<option value="4">4 Qty</option>								
-							</select>-->
-					<!--	</div>
-					</div>
-					<div class="occasional">
-						<h5>Types :</h5>
-						<div class="colr ert">
-							<label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>
-						</div>
-						<div class="colr">
-							<label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>
-						</div>
-						<div class="colr">
-							<label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
-						</div>
-						<div class="clearfix"> </div>
-					</div>-->  
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<s:form action="/subscribe.action" validate="false" method="post">
+															<s:form action="/editDeal.action" validate="false" method="post">
 																<fieldset>
 																	<input type="hidden" name="id_sujet" value="${sujetDetails[0]}">
 																	<input type="hidden" name="description" value="${sujetDetails[1]}">
@@ -149,7 +144,7 @@
 																	<input type="hidden" name="prix" value="${sujetDetails[8]}">
 																	<input type="hidden" name="nbr_adherents" value="${sujetDetails[10]}">
 																	<input type="hidden" name="id_user" value="${currentSessionUserId}">
-																	<input type="submit" name="submit" value="Subscribe" class="button">
+																	<input type="submit" name="submit" value="Edit" class="button">
 																</fieldset>
 															</s:form>
 														</div>

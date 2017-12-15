@@ -18,16 +18,16 @@ public class BaseDAO
 	public static void createUser(Utilisateur user)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-				
+
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			
+
 			session.save(user);
-			
+
 			tx.commit();
 			session.close();
-			}
+		}
 		catch (Exception e )
 		{
 			if (tx != null)
@@ -40,14 +40,14 @@ public class BaseDAO
 	}
 
 	public static boolean usernameTaken(String clientUsername) {
-		
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+
 		Transaction tx = null;
 		try {
-			
+
 			tx = session.beginTransaction();
-			
+
 			System.out.println("Username exists??");
 			Query query = session.createQuery("from Utilisateur where username='"+clientUsername+"'");
 			List users = query.list();
@@ -66,7 +66,7 @@ public class BaseDAO
 			session.close();
 			HibernateUtil.shutdown();
 		}
-		
+
 	}
 
 	public static boolean emailTaken(String clientEmail) {
@@ -77,12 +77,12 @@ public class BaseDAO
 	public static Utilisateur login(Utilisateur user) throws NoSuchAlgorithmException 
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+
 		Transaction tx = null;
 		try {
-			
+
 			tx = session.beginTransaction();
-			
+
 			System.out.println("Username exists??");
 			Query query = session.createQuery("from Utilisateur where email='"+user.getEmail()+"'");
 			List users = query.list();

@@ -8,13 +8,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import ma.ac.ensa.metier.RubriqueMe;
 import ma.ac.ensa.metier.SujetMe;
 import ma.ac.ensa.model.Utilisateur;
 
 public class ShowDealAction extends ActionSupport implements SessionAware{
-	private static SessionMap sessionMap;
-	private static SessionMap sessionMapUser = null;
-	
+	private static SessionMap sessionMapShowDeal;
 
 	private int id_sujet;
 	
@@ -31,28 +30,40 @@ public class ShowDealAction extends ActionSupport implements SessionAware{
 	
 	public String showDealDetails()
 	{
-		if(LoginAction.getSession() != null)
+		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
+		libelles = RubriqueMe.getItems();
+		
+		int numberOfRubriques = 0;
+		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
+	
+		ArrayList<Integer> tempArray = RubriqueMe.addRubriquesToHeaderFile(numberOfRubriques);
+		sessionMapShowDeal.put("rubriques", libelles);
+		sessionMapShowDeal.put("row1", tempArray.get(0));
+		sessionMapShowDeal.put("row2", tempArray.get(1));
+		
+		if (!SubscribeAction.noErrors)
+			SubscribeAction.getSubscribeSession().clear();
+		if(LoginAction.userLoggedIn)
 		{
-			sessionMapUser = LoginAction.getSession();
-			Utilisateur user = (Utilisateur) sessionMapUser.get("currentSessionUser");
-			
-			sessionMap.put("currentSessionUserId",  user.getId());
+			Utilisateur currentUser = (Utilisateur) LoginAction.getSession().get("currentSessionUser");
+			System.out.println("USER IS "+ currentUser);
+			sessionMapShowDeal.put("currentSessionUser", currentUser);
 		}
 		
 		ArrayList<String> sujetDetails = new ArrayList<>();
 		sujetDetails = SujetMe.getSujetById(id_sujet);
-		sessionMap.put("sujetDetails", sujetDetails);
+		sessionMapShowDeal.put("sujetDetails", sujetDetails);
 		return SUCCESS;
 	}
 	
 	@Override
 	public void setSession(Map map) {
-		sessionMap = (SessionMap) map;
+		sessionMapShowDeal = (SessionMap) map;
 		
 	}
 	
 	public static SessionMap getSession()
 	{
-		return sessionMap;
+		return sessionMapShowDeal;
 	}
 }

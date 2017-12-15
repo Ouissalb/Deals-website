@@ -9,20 +9,31 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import ma.ac.ensa.metier.RubriqueMe;
+import ma.ac.ensa.metier.SujetMe;
+import ma.ac.ensa.model.Utilisateur;
 
-public class PostDealAction extends ActionSupport implements SessionAware{
+public class ManageDealAction extends ActionSupport implements SessionAware{
 
 	private SessionMap sessionMap;
-	public PostDealAction() {
-		// TODO Auto-generated constructor stub
+	
+	private int id_sujet;
+	
+	public int getId_sujet() {
+		return id_sujet;
 	}
 
-	public String populateRubriques()
-	{
+	public void setId_sujet(int id_sujet) {
+		this.id_sujet = id_sujet;
+	}
+	
+	public ManageDealAction() {
 		
+	}
+	
+	public String manageDeal()
+	{
 		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
 		libelles = RubriqueMe.getItems();
-		System.out.println("LIBELLES FROM UPLOADDDEALS : "+libelles);
 		
 		int numberOfRubriques = 0;
 		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
@@ -32,8 +43,19 @@ public class PostDealAction extends ActionSupport implements SessionAware{
 		sessionMap.put("row1", tempArray.get(0));
 		sessionMap.put("row2", tempArray.get(1));
 		
+		if (!SubscribeAction.noErrors)
+			SubscribeAction.getSubscribeSession().clear();
+		if(LoginAction.userLoggedIn)
+		{
+			Utilisateur currentUser = (Utilisateur) LoginAction.getSession().get("currentSessionUser");
+			System.out.println("USER IS "+ currentUser);
+			sessionMap.put("currentSessionUser", currentUser);
+		}
+		
+		ArrayList<String> sujetDetails = new ArrayList<>();
+		sujetDetails = SujetMe.getSujetById(id_sujet);
+		sessionMap.put("sujetDetails", sujetDetails);
 		return SUCCESS;
-	
 	}
 	
 	@Override
@@ -41,5 +63,4 @@ public class PostDealAction extends ActionSupport implements SessionAware{
 		sessionMap = (SessionMap) map;
 		
 	}
-
 }

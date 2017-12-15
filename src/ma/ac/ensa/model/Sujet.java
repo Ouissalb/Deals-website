@@ -8,7 +8,7 @@ public class Sujet {
 	private int facteur_dim;
 	private int identifiant_rubrique;
 	private String image;
-	private static int nbr_adherents;
+	private int nbr_adherents;
 	private int prix;
 	private String start_date;
 	private int visible;
@@ -75,11 +75,11 @@ public class Sujet {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public static int getNbr_adherents() {
+	public int getNbr_adherents() {
 		return nbr_adherents;
 	}
-	public static void setNbr_adherents(int nbr_adherents) {
-		Sujet.nbr_adherents = nbr_adherents;
+	public void setNbr_adherents(int nbr_adherents) {
+		this.nbr_adherents = nbr_adherents;
 	}
 	public int getPrix() {
 		return prix;

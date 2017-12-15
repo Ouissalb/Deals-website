@@ -13,6 +13,11 @@
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/jquery.easyPaginate.js"></script>		
+		
+		
+		
 <!--//tags -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -87,7 +92,7 @@
 						<div class="tab1">
 							
 							
-							
+						<div id="easyPaginate">
 							<c:forEach var="sujet" items="${sujets}">
 							<div class="col-md-3 product-men">
 							
@@ -96,11 +101,11 @@
 									<div class="men-thumb-item">
 										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet[7]}" alt="" class="pro-image-front">
 										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet[7]}" alt="" class="pro-image-back">
-											<div class="men-cart-pro">
-												<div class="inner-men-cart-pro">
+											<!--<div class="men-cart-pro">
+												 <div class="inner-men-cart-pro">
 													<a href="single.html" class="link-product-add-cart">Voir plus</a>
-												</div>
-											</div>
+												</div> 
+											</div>-->
 											<span class="product-new-top demo" id="${sujet[2]}"> </span>																								
 									</div>
 									<div class="item-info-product ">
@@ -114,7 +119,7 @@
 										
 											
 											<c:choose>
-												  <c:when test="${empty sujetDetails[10] or sujetDetails[10] == '0'}">
+												  <c:when test="${empty sujet[10] or sujet[10] == '0'}">
 												    <span class="item_price">${sujet[9]} DH</span>
 												  </c:when>
 							
@@ -131,7 +136,7 @@
 								</div>
 							</div>
 						</c:forEach>
-							
+					</div>
 							
 							
 							
@@ -403,6 +408,13 @@ var x = setInterval(function() {
 	}
 	}, 1000);
 	</script>
+	<script type="text/javascript">
+    $('#easyPaginate').easyPaginate({
+        paginateElement: 'div',
+        elementsPerPage: 3,
+        effect: 'climb'
+    });
+    </script>
 
 </body>
 </html>

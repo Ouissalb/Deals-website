@@ -47,6 +47,17 @@ public class UploadDealAction extends ActionSupport implements SessionAware{
 
 	public String uploaddeal() {
 
+		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
+		libelles = RubriqueMe.getItems();
+		
+		int numberOfRubriques = 0;
+		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
+	
+		ArrayList<Integer> tempArray = RubriqueMe.addRubriquesToHeaderFile(numberOfRubriques);
+		sessionMap.put("rubriques", libelles);
+		sessionMap.put("row1", tempArray.get(0));
+		sessionMap.put("row2", tempArray.get(1));
+		
 		// Date posted
 		long time = System.currentTimeMillis();
 		Calendar cal = Calendar.getInstance();

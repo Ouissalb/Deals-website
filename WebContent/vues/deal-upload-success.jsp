@@ -33,7 +33,7 @@
   
   	<div class="new_arrivals_agile_w3ls_info"> 
 		<div class="container">
-		    <h3 class="wthree_text_info">Open <span>Deals</span></h3>		
+		    <h3 class="wthree_text_info">Your deal was <span>successfully uploaded!</span></h3>		
 				<div id="horizontalTab">
 						<ul class="resp-tabs-list">
 							<li></li>
@@ -54,20 +54,17 @@
 										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet_img}" alt="" class="pro-image-front">
 										<img src="<%=request.getContextPath()%>/uploadedImages/${sujet_img}" alt="" class="pro-image-back">
 											<div class="men-cart-pro">
-												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Voir plus</a>
-												</div>
 											</div>
 											<span class="product-new-top demo">New</span>																								
 									</div>
 									<div class="item-info-product ">
 										<h4><a href="single.html">${sujet_title}</a></h4>
 										<div class="info-product-price">
-											<span class="item_price">$150.99</span>
-											<del>$189.71</del>
+											<span class="item_price">${sujet_prix} DH</span>
+											
 										</div>											
 									</div>
-									<span class="product-new-top-left"> 12<i class="material-icons move-bottom">person_add</i></span>
+									<span class="product-new-top-left">0<i class="material-icons move-bottom">person_add</i></span>
 								</div>
 							</div>
 							

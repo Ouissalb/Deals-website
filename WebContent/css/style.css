@@ -5568,3 +5568,46 @@ p.w3ls_para {
     }
 }
 /*-- //responsive media queries --*/
+
+
+
+/* ------  PAGINATION  ------ */
+
+.easyPaginate {
+    display: inline-block;
+}
+
+.easyPaginate a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+} 
+
+
+/* ------- MANAGE DEAL---------- */
+
+#deleteDeal{
+
+}
+.manageD input{
+	
+	 -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #e36f6f;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  position :relative;
+  left: 75%;
+  width : 200px;
+}
+
+.manageD:hover input{
+	 background: #e3bfbf;
+  text-decoration: none;
+}
+

@@ -44,6 +44,7 @@ public class RubriqueDAO {
 						row1.add(Integer.toString(rubrique.getIdentifiant()));
 						row1.add((String) rubrique.getLibelle());
 						System.out.println("row1 = "+row1);
+						row1.add(Integer.toString(items.size()));
 						libelles.add(row1);
 				}
 				

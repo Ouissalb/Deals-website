@@ -20,12 +20,21 @@
 			<result>/vues/post-a-deal.jsp</result>
 		</action> 
 		
+		<action name="viewYourDeals" class="ma.ac.ensa.presentation.actions.ViewYourDealsAction" method="displayDeals">  
+			<result>/vues/view-your-deals.jsp</result>
+		</action> 
+		
 		<action name="subscribe" class="ma.ac.ensa.presentation.actions.SubscribeAction" method="subscribe">  
-			<result name="error">/vues/show-deal-details.jsp</result>
+			<result name="error">/vues/subscribe-error.jsp</result>
+			<result name="success">/vues/show-deal-details.jsp</result>
 		</action> 
 		
 		<action name="showDealDetails" class="ma.ac.ensa.presentation.actions.ShowDealAction" method="showDealDetails">  
 			<result>/vues/show-deal-details.jsp</result>
+		</action>
+		
+		<action name="manageDeal" class="ma.ac.ensa.presentation.actions.ManageDealAction" method="manageDeal">  
+			<result>/vues/manage-deal.jsp</result>
 		</action>
   
 		<action name="loginproc" class="ma.ac.ensa.presentation.actions.LoginAction" method="loginproc">  

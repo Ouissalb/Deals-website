@@ -1,21 +1,28 @@
 package ma.ac.ensa.presentation.actions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import ma.ac.ensa.metier.RubriqueMe;
 import ma.ac.ensa.metier.SubscriptionMe;
 import ma.ac.ensa.metier.SujetMe;
+import ma.ac.ensa.model.Subscription;
 import ma.ac.ensa.model.Utilisateur;
 
 public class SubscribeAction extends ActionSupport implements SessionAware{
 	
 	private static SessionMap sessionMap;
-	private static SessionMap userSession = null;
 	
 	private String id_sujet;
 	private String description;
@@ -28,43 +35,76 @@ public class SubscribeAction extends ActionSupport implements SessionAware{
 	private String nbr_adherents;
 	private int id_user;
 	
+	public static boolean noErrors = true;
+	
+	String today_date = null;
+	
 	
 	public SubscribeAction() 
 	{
 	}
 	
-	public String subscribe() 
+	public String subscribe() throws NumberFormatException, ParseException 
 	{
 		sessionMap.clear();
-		Utilisateur user = null;
-		userSession = LoginAction.getSession();	
+		
+		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
+		libelles = RubriqueMe.getItems();
+		
+		int numberOfRubriques = 0;
+		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
+	
+		ArrayList<Integer> tempArray = RubriqueMe.addRubriquesToHeaderFile(numberOfRubriques);
+		sessionMap.put("rubriques", libelles);
+		sessionMap.put("row1", tempArray.get(0));
+		sessionMap.put("row2", tempArray.get(1));
 		
 		ArrayList<String> sujetDetails = new ArrayList<>();
 		sujetDetails = SujetMe.getSujetById(Integer.parseInt(id_sujet));
 		sessionMap.put("sujetDetails", sujetDetails);
 		
-		if (userSession != null)
+		if(LoginAction.userLoggedIn)
 		{
-			user = (Utilisateur) LoginAction.getSession().get("currentSessionUser");
+			Utilisateur user = LoginAction.getUserDetails();
+			System.out.println("USER IS2 "+ user.getEmail());
+			id_user = user.getId();
+			System.out.println("id_user = "+id_user+ ", user.getId() = "+ user.getId());
+			sessionMap.put("currentSessionUser", user);
 		}
 		
-		if (user == null || id_user != user.getId())
+		if (! LoginAction.userLoggedIn )
 		{
-			sessionMap.put("messageSubs", ", you aren't logged in : login");
+			
+			sessionMap.put("messageSubs", ", you aren't logged in, you must login first");
+			noErrors = false;
 			return ERROR;
 		}
-		else if (SubscriptionMe.userAlreadySubscribed() == true)
+		else if (SubscriptionMe.userAlreadySubscribed(id_user, Integer.parseInt(id_sujet)) == true)
 		{
 			sessionMap.put("messageSubs", ", you are already subscribed to this deal");
+			noErrors = false;
 			return ERROR;
 		}
-		else if (SujetMe.sujetExpired(id_sujet))
+		else if (SujetMe.sujetExpired(Integer.parseInt(id_sujet)))
 		{
-			sessionMap.put("messageSubs", ", ce sujet a expiré");
+			noErrors = false;
+			sessionMap.put("messageSubs", ", this deal has expired or no longer exists");
 			return ERROR;
 		}
 		else
 		{
+			long time = System.currentTimeMillis();
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(time);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			today_date = dateFormat.format(cal.getTime());
+			
+			Subscription subscription =  new Subscription(id_user, Integer.parseInt(id_vendeur)
+					, Integer.parseInt(id_sujet),today_date, 0);
+			
+			SubscriptionMe.addNewSubscription(subscription);
+			SubscriptionMe.incrementSubscribers(Integer.parseInt(id_sujet), Integer.parseInt(nbr_adherents)+1);
+			noErrors = false;
 			sessionMap.put("messageSubs", ", you have successfully subscribed to this deal, you'll "
 					+ "receive an email once payment is ready to be made");
 			return SUCCESS;
@@ -76,6 +116,11 @@ public class SubscribeAction extends ActionSupport implements SessionAware{
 	public void setSession(Map map) {
 		sessionMap = (SessionMap) map;
 		
+	}
+	
+	public static SessionMap getSubscribeSession()
+	{
+		return sessionMap;
 	}
 
 

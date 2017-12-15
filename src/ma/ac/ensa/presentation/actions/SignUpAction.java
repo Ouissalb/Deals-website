@@ -12,6 +12,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import ma.ac.ensa.dao.BaseDAO;
+import ma.ac.ensa.metier.RubriqueMe;
 import ma.ac.ensa.metier.UtilisateurMe;
 import ma.ac.ensa.model.Utilisateur;
 
@@ -84,6 +85,17 @@ public class SignUpAction  extends ActionSupport  implements SessionAware{
 		ArrayList<ArrayList<String>> sujets = new ArrayList<ArrayList<String>>();
 		sujets = (ArrayList<ArrayList<String>>) IndexAction.getSessionMap().get("sujets");
 		sessionMap.put("sujets", sujets);
+		
+		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
+		libelles = RubriqueMe.getItems();
+		
+		int numberOfRubriques = 0;
+		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
+	
+		ArrayList<Integer> tempArray = RubriqueMe.addRubriquesToHeaderFile(numberOfRubriques);
+		sessionMap.put("rubriques", libelles);
+		sessionMap.put("row1", tempArray.get(0));
+		sessionMap.put("row2", tempArray.get(1));
 		
 		errorMsgEmail = null;
 		errorMsgUsername = null;

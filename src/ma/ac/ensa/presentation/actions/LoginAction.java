@@ -12,6 +12,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import ma.ac.ensa.dao.BaseDAO;
+import ma.ac.ensa.metier.RubriqueMe;
 import ma.ac.ensa.metier.SujetMe;
 import ma.ac.ensa.model.Sujet;
 import ma.ac.ensa.model.Utilisateur;
@@ -20,6 +21,8 @@ public class LoginAction extends ActionSupport  implements SessionAware
 {
 	
 	private static SessionMap sessionMap = null;
+	private static Utilisateur user;
+	public static boolean userLoggedIn = false;
 	
 	@Override
 	public void setSession(Map map) {
@@ -51,16 +54,27 @@ public class LoginAction extends ActionSupport  implements SessionAware
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String loginproc()
 	{
+		ArrayList<ArrayList<String>> libelles = new ArrayList<ArrayList<String>>();
+		libelles = RubriqueMe.getItems();
+		
+		int numberOfRubriques = 0;
+		numberOfRubriques = Integer.parseInt(libelles.get(1).get(2));
+	
+		ArrayList<Integer> tempArray = RubriqueMe.addRubriquesToHeaderFile(numberOfRubriques);
+		sessionMap.put("rubriques", libelles);
+		sessionMap.put("row1", tempArray.get(0));
+		sessionMap.put("row2", tempArray.get(1));
+		
 		ArrayList<ArrayList<String>> sujets = new ArrayList<ArrayList<String>>();
 		sujets = SujetMe.getAllSujets();
 		sessionMap.put("sujets", sujets);
 		
 		try 
 		{
-            Utilisateur user = new Utilisateur();
+            user = new Utilisateur();
 			String errorMsg = null;
 			user = new Utilisateur(null, null, null, null);
 			user.setEmail(email);
@@ -75,12 +89,14 @@ public class LoginAction extends ActionSupport  implements SessionAware
 			if (user.getRole().equals("admin"))
 			{
 				sessionMap.put("currentSessionUser", user);
+				userLoggedIn = true;
 				return "admin-success";
 			}
 			else if (user.getRole().equals("client"))
 			{
 				System.out.println("CLIENT IS LOGGED IN");
 				sessionMap.put("currentSessionUser", user);
+				userLoggedIn = true;
 				return "client-success";
 			}
 			return ERROR;
@@ -96,6 +112,9 @@ public class LoginAction extends ActionSupport  implements SessionAware
 	}
 
 
-
+	public static Utilisateur getUserDetails()
+	{
+		return user;
+	}
 
 }

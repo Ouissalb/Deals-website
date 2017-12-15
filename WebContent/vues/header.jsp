@@ -82,8 +82,8 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="<%=request.getContextPath()%>/showIndexPage.action">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
+					<li class="active menu__item menu__item--current"><a class="menu__link" href="<%=request.getContextPath()%>/index.action">Home <span class="sr-only">(current)</span></a></li>
+					
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 							<ul class="dropdown-menu multi-column columns-3">
@@ -91,28 +91,27 @@
 									<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
 										<a href="mens.html"><img src="images/top2.jpg" alt=" "/></a>
 									</div>
-									<div class="col-sm-3 multi-gd-img">
-										<ul class="multi-column-dropdown">
-											<li><a href="mens.html">Clothing</a></li>
-											<li><a href="mens.html">Wallets</a></li>
-											<li><a href="mens.html">Footwear</a></li>
-											<li><a href="mens.html">Watches</a></li>
-											<li><a href="mens.html">Accessories</a></li>
-											<li><a href="mens.html">Bags</a></li>
-											<li><a href="mens.html">Caps & Hats</a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3 multi-gd-img">
-										<ul class="multi-column-dropdown">
-											<li><a href="mens.html">Jewellery</a></li>
-											<li><a href="mens.html">Sunglasses</a></li>
-											<li><a href="mens.html">Perfumes</a></li>
-											<li><a href="mens.html">Beauty</a></li>
-											<li><a href="mens.html">Shirts</a></li>
-											<li><a href="mens.html">Sunglasses</a></li>
-											<li><a href="mens.html">Swimwear</a></li>
-										</ul>
-									</div>
+									<form>
+										<div class="col-sm-3 multi-gd-img">
+										  
+											<ul class="multi-column-dropdown">
+											 <c:forEach var = "i"  begin="0" end="${row1}" varStatus="loop">
+    											<li><a href="mens.html">
+													<input type="submit" value="${rubriques[i][1]}" style="background:none;border:none;">
+												</a></li>
+											 </c:forEach>
+											</ul>
+										</div>
+										<div class="col-sm-3 multi-gd-img">
+											<ul class="multi-column-dropdown">
+											 <c:forEach var = "i"  begin="${row1}" end="${row2}" varStatus="loop">
+    											<li><a href="mens.html">
+													<input type="submit" value="${rubriques[i][1]}" style="background:none;border:none;">
+												</a></li>
+											 </c:forEach>
+											</ul>
+										</div>
+									</form>
 									<div class="clearfix"></div>
 								</div>
 							</ul>
@@ -128,7 +127,7 @@
 					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
 					<c:if test="${not empty currentSessionUser }" var="maVariable">
 					<li class=" menu__item"><a class="menu__link" href="<%=request.getContextPath()%>/postDeal.action">Post a deal</a></li>
-					<li class=" menu__item"><a class="menu__link" href="contact.htm">View your deals</a></li>
+					<li class=" menu__item"><a class="menu__link" href="<%=request.getContextPath()%>/viewYourDeals.action">View your deals</a></li>
 				 	</c:if>
 				  </ul>
 				</div>
