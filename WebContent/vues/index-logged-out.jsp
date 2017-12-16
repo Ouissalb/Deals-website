@@ -127,7 +127,7 @@
 												     <span class="item_price">${sujet[9]} DH</span>
 													<del>${sujet[8]}</del>					    
 												  </c:otherwise>
-												</c:choose>
+											</c:choose>
 												
 											
 										</div>											

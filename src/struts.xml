@@ -37,7 +37,7 @@
 			<result>/vues/manage-deal.jsp</result>
 		</action>
 		
-		<action name="editDeal" class="ma.ac.ensa.presentation.actions.ManageDealAction" method="editDeal">  
+		<action name="editDeal" class="ma.ac.ensa.presentation.actions.ShowDealAction" method="showDealDetails">  
 			<result>/vues/edit-deal.jsp</result>
 		</action>
   
@@ -58,6 +58,12 @@
 			<result name="ERROR" >/vues/index-logged-out.jsp</result>  
 			<result name="success" >/vues/deal-upload-success.jsp</result> 
 			<result name="input" >/vues/post-a-deal.jsp</result>
+		</action> 
+		
+		<action name="updatedeal" class="ma.ac.ensa.presentation.actions.UpdateDealAction" method="updatedeal">  
+			<result name="ERROR" >/vues/edit-deal.jsp</result>  
+			<result name="success" >/vues/deal-update-success.jsp</result> 
+			<result name="input" >/vues/edit-deal.jsp</result>
 		</action> 
   
 		<action name="logout" class="ma.ac.ensa.presentation.actions.LoginAction" method="logout">  

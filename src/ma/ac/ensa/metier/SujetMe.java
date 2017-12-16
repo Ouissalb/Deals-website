@@ -59,5 +59,18 @@ public class SujetMe {
 		return SujetDAO.getUserDeals(id);
 	}
 
+	public static void updateSujetWithImg(int i, String description, String dateEndMysqlFormat, int rubrique,
+			String myFileFileName, int price, String title) {
+		SujetDAO.updateSujetWithImg(i, description, dateEndMysqlFormat, rubrique, myFileFileName, price, title);
+		
+	}
+
+	public static void updateSujet(int i, String description, String dateEndMysqlFormat, int rubrique, int price,
+			String title) {
+		SujetDAO.updateSujet(i, description, dateEndMysqlFormat, rubrique, price, title);
+		
+	}
+
+
 
 }

@@ -58,6 +58,8 @@ public class ManageDealAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+
+	
 	@Override
 	public void setSession(Map map) {
 		sessionMap = (SessionMap) map;

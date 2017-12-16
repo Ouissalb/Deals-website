@@ -29,39 +29,41 @@
 
 <br/>
 <br/>
-<h2> &nbsp Create a new deal</h2>
+<h2> &nbsp Edit deal</h2>
 <br />
 <div class="inner contact">
                 
                 <div>                 
-                    <s:form id="contact-us" method="post" action="uploaddeal.action" validate="true" enctype = "multipart/form-data">
+                    <s:form id="contact-us" method="post" action="updatedeal.action" validate="true" enctype = "multipart/form-data">
                         <!-- Left Inputs -->
                         <div class="col-xs-6">
+                            <input type="hidden" name="id_sujet" value="${sujetDetails[0] }">
+                            <input type="text" name="title" id="name" required="required" class="form" value="${sujetDetails[12]}"/>
                             
-                            <input type="text" name="title" id="name" required="required" class="form" placeholder="Title" />
-                            
-                            <input type="date" name="dateEnd" id="dateEnd" required="required" class="form" />
+                            <input type="date" name="dateEnd" id="dateEnd" required="required" class="form" value="${sujetDetails[2]}" />
                             
                             <label for="number">Price</label>
-                            <input type="number" name="price" min="100" max="20000">
+                            <input type="number" name="price" min="100" max="20000" value="${sujetDetails[8]}"></input>
                             
                             &nbsp &nbsp &nbsp
-                            <label for="range">Discount :</label>
-                   			<select name="discount" >
-							  <option value="1">1%</option>
-							  <option value="2">2%</option>
-							  <option value="3">3%</option>
-							  <option value="4">4%</option>
-							  <option value="5">5%</option>
-							  <option value="10">10%</option>
-							  <option value="15">20%</option>
-							  <option value="20">30%</option>
-							</select>
+
 							<br/>
+							
+							
+							
+							
 							<label for="rubrique">Rubrique :</label>
+
 							<select name="rubrique" >
 							    <c:forEach var="item" items="${rubriques}">
-							     <option value="${item[0]}">${item[1]}</option>
+							    	 <c:choose>
+										<c:when test="${ item[0] == sujetDetails[6]}">
+											<option selected="selected" value="${item[0]}">${item[1]}</option>		    
+										</c:when>
+									    <c:otherwise>
+									    	<option value="${item[0]}">${item[1]}</option>				    
+									    </c:otherwise>
+									</c:choose>
 							    </c:forEach>
 							</select>
 							
@@ -72,7 +74,7 @@
                         <!-- Right Inputs -->
                         <div class="col-xs-6">
                          
-                            <textarea name="description" id="message" class="form textarea"  placeholder="Description"></textarea>
+                            <textarea name="description" id="message" class="form textarea"  placeholder="Description">${sujetDetails[1]}</textarea>
                              <div id = "drag">
                         	 <input type="file" name = "myFile">
                         	 <br/><br/>
@@ -88,7 +90,7 @@
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                          
-                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button> 
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Edit deal</button> 
                         </div>
                         
                         <!-- End Bottom Submit -->
@@ -108,7 +110,7 @@
             </div><!-- End Inner -->
 
 <br/><br/>
-<div  id = "credits" ><center> Form developer's website : <a href="http://shuvohabib.com" target="blank">Shuvo Habib </a> </center></div>
+<div  id = "credits" ><center> Form designed by: <a href="http://shuvohabib.com" target="blank">Shuvo Habib </a> </center></div>
 
 
 <jsp:include page="footer.jsp" />

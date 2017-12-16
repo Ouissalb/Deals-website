@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+    "-//Apache Struts//XWork Validator 1.0.3//EN"
+    "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="title">
+		<field-validator type="requiredstring">
+			<message key="errors.required" />
+		</field-validator>
+	</field>
+	
+	<field name="price">
+		<field-validator type="required">
+			<message key="errors.required" />
+		</field-validator>
+		<field-validator type = "int">
+	         <param name = "min">100</param>
+	         <param name = "max">10000</param>
+	         <message>
+	             The price must be between 100 and 10 000 DH.
+	         </message>
+        </field-validator>
+	</field>
+	
+	<field name="description">
+		<field-validator type="requiredstring">
+			<message key="errors.required" />
+		</field-validator>
+	</field>
+</validators>

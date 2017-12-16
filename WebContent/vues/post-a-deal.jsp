@@ -88,7 +88,7 @@
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                          
-                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button> 
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Add deal</button> 
                         </div>
                         
                         <!-- End Bottom Submit -->

@@ -46,7 +46,6 @@ public class ShowDealAction extends ActionSupport implements SessionAware{
 		if(LoginAction.userLoggedIn)
 		{
 			Utilisateur currentUser = (Utilisateur) LoginAction.getSession().get("currentSessionUser");
-			System.out.println("USER IS "+ currentUser);
 			sessionMapShowDeal.put("currentSessionUser", currentUser);
 		}
 		

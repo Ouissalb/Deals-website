@@ -274,4 +274,82 @@ public class SujetDAO {
 				}
 	}
 
+	public static void updateSujetWithImg(int i, String description, String dateEndMysqlFormat, int rubrique,
+			String myFileFileName, int price, String title) 
+	{
+	Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();	
+			
+			String hqlUpdate = "update Sujet set description = :description,"
+					+ " end_date = :dateEndMysqlFormat, identifiant_rubrique = :rubrique,"
+					+ " image = :myFileFileName, prix = :price, title = :title "
+					+ " where id = :i";
+			
+			int updatedEntities = session.createQuery( hqlUpdate )
+					.setString("description", description)
+					.setString("dateEndMysqlFormat", dateEndMysqlFormat)
+					.setLong("rubrique", rubrique)
+					.setString("myFileFileName", myFileFileName)
+					.setLong("price", price)
+			        .setLong( "i", i )
+			        .setString( "title", title )
+			        .executeUpdate();
+			
+			tx.commit();
+			session.close();
+			}
+		catch (Exception e )
+		{
+			if (tx != null)
+			{
+				tx.rollback();
+			}
+			throw e;
+		}
+		HibernateUtil.shutdown();
+}	
+
+
+	public static void updateSujet(int i, String description, String dateEndMysqlFormat, int rubrique, int price,
+			String title) {
+Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();	
+			
+			String hqlUpdate = "update Sujet set description = :description,"
+					+ " end_date = :dateEndMysqlFormat, identifiant_rubrique = :rubrique,"
+					+ "  prix = :price, title = :title "
+					+ " where id = :i";
+			
+			int updatedEntities = session.createQuery( hqlUpdate )
+					.setString("description", description)
+					.setString("dateEndMysqlFormat", dateEndMysqlFormat)
+					.setLong("rubrique", rubrique)
+					.setLong("price", price)
+			        .setLong( "i", i )
+			        .setString( "title", title )
+			        .executeUpdate();
+			
+			tx.commit();
+			session.close();
+			}
+		catch (Exception e )
+		{
+			if (tx != null)
+			{
+				tx.rollback();
+			}
+			throw e;
+		}
+		HibernateUtil.shutdown();
+		
+	}
+	
+
+
 }
